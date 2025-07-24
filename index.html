@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Formulário de Cadastro</title>
+    <link rel="shortcut icon" href="favicon.png" type="image/x-icon">
+    <!-- Link para o arquivo CSS externo -->
+    <link rel="stylesheet" href="style.css">
+    <!-- Link para a fonte do Google Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;500;700&display=swap" rel="stylesheet">
+</head>
+
+<body>
+
+    <div class="form-container">
+        <div class="form-header">
+            <h1>Cadastre-se</h1>
+            <p>Preencha os dados abaixo para receber nossas novidades</p>
+        </div>
+        <div class="form-content">
+            <form id="leadForm">
+                <div class="form-group">
+                    <label for="nome">NOME COMPLETO</label>
+                    <input type="text" id="nome" name="nome" placeholder="Digite seu nome completo" required>
+                </div>
+                <div class="phone-group">
+                    <div class="form-group">
+                        <label for="ddd">DDD</label>
+                        <input type="text" id="ddd" name="ddd" placeholder="11" required maxlength="2">
+                    </div>
+                    <div class="form-group">
+                        <label for="telefone">TELEFONE</label>
+                        <!-- Adicionado maxlength="10" para limitar a entrada -->
+                        <input type="text" id="telefone" name="telefone" placeholder="99999-9999" required
+                            maxlength="10">
+                    </div>
+                </div>
+                <button type="submit" class="submit-btn">CADASTRAR</button>
+            </form>
+            <!-- Div para exibir mensagens de sucesso ou erro -->
+            <div id="message" class="message"></div>
+        </div>
+    </div>
+
+    <!-- Link para o arquivo JavaScript externo (no final do body) -->
+    <script src="script.js"></script>
+</body>
+
+</html>
