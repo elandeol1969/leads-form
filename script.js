@@ -6,16 +6,17 @@ document.addEventListener('DOMContentLoaded', () => {
 
         // Elementos do formulário e mensagem
         const nomeInput = document.getElementById('nome');
+        const emailInput = document.getElementById('email'); // Captura o campo de email
         const dddInput = document.getElementById('ddd');
         const telefoneInput = document.getElementById('telefone');
         const submitButton = document.querySelector('.submit-btn');
-        const messageDiv = document.getElementById('message');
-
+        
         // Resetando a mensagem
         showMessage('', 'none');
 
         // 1. Coleta e validação dos dados
         const nome = nomeInput.value.trim();
+        const email = emailInput.value.trim(); // Captura o valor do email
         const ddd = dddInput.value.trim();
         const telefone = telefoneInput.value.trim();
 
@@ -23,20 +24,29 @@ document.addEventListener('DOMContentLoaded', () => {
             showMessage('O nome completo deve ter pelo menos 2 caracteres.', 'error');
             return;
         }
+
+        // Validação do e-mail com Expressão Regular
+        const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+        if (!emailRegex.test(email)) {
+            showMessage('Por favor, insira um endereço de e-mail válido.', 'error');
+            return;
+        }
+
         if (!/^\d{2}$/.test(ddd)) {
             showMessage('O DDD deve conter exatamente 2 dígitos.', 'error');
             return;
         }
-        // Validação do telefone: apenas dígitos e hífen, entre 9 e 10 caracteres
+        
         if (!/^[\d-]+$/.test(telefone) || telefone.length > 10 || telefone.length < 9) {
             showMessage('O telefone deve ter entre 9 e 10 caracteres (ex: 99999-9999).', 'error');
             return;
         }
 
-        // 2. Preparação dos dados para a API
+        // 2. Preparação dos dados para a API (com o email)
         const telefoneCompleto = `(${ddd}) ${telefone}`;
         const leadData = {
             nome: nome,
+            email: email, // Adiciona o email ao objeto
             telefone: telefoneCompleto
         };
 
@@ -56,7 +66,7 @@ document.addEventListener('DOMContentLoaded', () => {
                     'Content-Type': 'application/json',
                     'apikey': supabaseApiKey,
                     'Authorization': `Bearer ${supabaseApiKey}`,
-                    'Prefer': 'return=minimal' // Evita que a API retorne os dados inseridos
+                    'Prefer': 'return=minimal'
                 },
                 body: JSON.stringify(leadData)
             });
@@ -86,7 +96,6 @@ document.addEventListener('DOMContentLoaded', () => {
         const messageDiv = document.getElementById('message');
         messageDiv.textContent = text;
         
-        // Remove classes antigas e adiciona a nova
         messageDiv.className = 'message';
         if (type === 'success' || type === 'error') {
             messageDiv.classList.add(type);

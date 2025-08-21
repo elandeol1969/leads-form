@@ -1,6 +1,5 @@
 <!DOCTYPE html>
 <html lang="pt-br">
-
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -13,7 +12,6 @@
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;500;700&display=swap" rel="stylesheet">
 </head>
-
 <body>
 
     <div class="form-container">
@@ -27,6 +25,14 @@
                     <label for="nome">NOME COMPLETO</label>
                     <input type="text" id="nome" name="nome" placeholder="Digite seu nome completo" required>
                 </div>
+
+                <!-- NOVO CAMPO DE E-MAIL ADICIONADO -->
+                <div class="form-group">
+                    <label for="email">EMAIL</label>
+                    <input type="email" id="email" name="email" placeholder="seuemail@exemplo.com" required>
+                </div>
+                <!-- FIM DO NOVO CAMPO -->
+
                 <div class="phone-group">
                     <div class="form-group">
                         <label for="ddd">DDD</label>
@@ -34,9 +40,7 @@
                     </div>
                     <div class="form-group">
                         <label for="telefone">TELEFONE</label>
-                        <!-- Adicionado maxlength="10" para limitar a entrada -->
-                        <input type="text" id="telefone" name="telefone" placeholder="99999-9999" required
-                            maxlength="10">
+                        <input type="text" id="telefone" name="telefone" placeholder="99999-9999" required maxlength="10">
                     </div>
                 </div>
                 <button type="submit" class="submit-btn">CADASTRAR</button>
@@ -49,5 +53,4 @@
     <!-- Link para o arquivo JavaScript externo (no final do body) -->
     <script src="script.js"></script>
 </body>
-
 </html>
